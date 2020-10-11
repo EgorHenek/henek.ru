@@ -26,16 +26,39 @@
       >GitHub</a>
     </p>
 
+    <g-link
+      v-for="project in $page.projects.edges"
+      :key="project.node.id"
+      :to="project.node.path"
+    >
+      {{ project.node.title }}
+    </g-link>
   </Layout>
 </template>
 
 <script>
 export default {
   metaInfo: {
-    title: 'Hello, world!'
+    title: 'Мой персональный сайт',
   }
 }
 </script>
+
+<page-query>
+query {
+  projects: allProject {
+    edges {
+      node {
+        id
+        path
+        title
+        url
+        content
+      }
+    }
+  }
+}
+</page-query>
 
 <style>
 .home-links a {
