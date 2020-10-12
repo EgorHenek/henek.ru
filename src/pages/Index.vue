@@ -1,38 +1,22 @@
 <template>
   <Layout>
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image
-      alt="Example image"
-      src="~/favicon.png"
-      width="135"
-    />
+    <section class="hero is-warning is-bold">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title is-1">
+            {{ $page.metadata.siteDescription }}
+          </h1>
+        </div>
+      </div>
+    </section>
 
-    <h1>Hello, world!</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
-
-    <p class="home-links">
-      <a
-        href="https://gridsome.org/docs/"
-        target="_blank"
-        rel="noopener"
-      >Gridsome Docs</a>
-      <a
-        href="https://github.com/gridsome/gridsome"
-        target="_blank"
-        rel="noopener"
-      >GitHub</a>
-    </p>
-
-    <g-link
+    <div
       v-for="project in $page.projects.edges"
       :key="project.node.id"
-      :to="project.node.path"
+      class="container bg-blue-400 min-w-full h-64"
     >
       {{ project.node.title }}
-    </g-link>
+    </div>
   </Layout>
 </template>
 
@@ -57,11 +41,8 @@ query {
       }
     }
   }
+  metadata {
+    siteDescription
+  }
 }
 </page-query>
-
-<style>
-.home-links a {
-  margin-right: 1rem;
-}
-</style>
