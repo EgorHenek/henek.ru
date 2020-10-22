@@ -10,12 +10,50 @@
       </div>
     </section>
 
-    <div
-      v-for="project in $page.projects.edges"
-      :key="project.node.id"
-      class="container bg-blue-400 min-w-full h-64"
-    >
-      {{ project.node.title }}
+    <div class="section">
+      <div class="container">
+        <h3 class="title is-3">
+          Мои проекты
+        </h3>
+        <div class="columns">
+          <div
+              v-for="project in $page.projects.edges"
+              :key="project.node.id"
+              class="column is-one-third-desktop is-full-mobile is-half-tablet"
+          >
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <g-image :src="project.node.image" />
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-48x48">
+                      <g-image :src="project.node.logo" />
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                    <p class="title is-4">
+                      <a
+                          :href="project.node.url"
+                          target="_blank"
+                      >{{ project.node.title }}</a>
+                    </p>
+                    <p class="subtitle is-6">{{ project.node.subtitle}}</p>
+                  </div>
+                </div>
+
+                <div
+                    class="content"
+                    v-html="project.node.content"
+                />
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
     </div>
   </Layout>
 </template>
@@ -30,7 +68,7 @@ export default {
 
 <page-query>
 query {
-  projects: allProject {
+  projects: allProject(sortBy: "id") {
     edges {
       node {
         id
@@ -38,6 +76,9 @@ query {
         title
         url
         content
+        logo
+        image
+        subtitle
       }
     }
   }

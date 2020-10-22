@@ -75,7 +75,10 @@ type Project implements Node {
     fileInfo: Project_FileInfo
     headings(depth: RemarkHeadingLevels, stripTags: Boolean = true): [RemarkHeading]
     id: ID!
+    image: String
+    logo: String
     path(to: String = "default"): String
+    subtitle: String
     timeToRead(
         "Words per minute"
         speed: Int = 230
@@ -229,7 +232,10 @@ input ProjectFilterInput {
     excerpt: StringQueryOperatorInput
     fileInfo: Project_FileInfoFilterInput
     id: IDQueryOperatorInput
+    image: StringQueryOperatorInput
+    logo: StringQueryOperatorInput
     path: StringQueryOperatorInput
+    subtitle: StringQueryOperatorInput
     title: StringQueryOperatorInput
     url: StringQueryOperatorInput
 }
